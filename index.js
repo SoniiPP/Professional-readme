@@ -1,12 +1,12 @@
 // TODO: Include packages needed for this application
-const inquirer = require("inquirer");
-const fs = require("fs");
+const inquirer = require("inquirer"); //for collecting user inputs from CLI
+const fs = require("fs"); // fs for file system operations
 const path = require("path");
 const generateMarkdown = require("./utils/generateMarkdown");
 const { default: Choices } = require("inquirer/lib/objects/choices");
 const { default: Choice } = require("inquirer/lib/objects/choice");
 
-// TODO: Create an array of questions for user input
+// TODO: Create an array of questions for user input// uitilizing inquirer to gather information anout the project
 const questions = [
   {
     type: "input",
@@ -39,7 +39,7 @@ const questions = [
   },
 
   {
-    type: "checkbox",
+    type: "list",
     name: "license",
     message: "Choose a license for you project:",
     choices: ["MIT", "Apache 2.0", "Boost 1.0", "MPL 2.0", "BSD 3", "None"],
@@ -75,13 +75,13 @@ const questions = [
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
   return fs.writeFile(path.join(process.cwd(), fileName), data, (err) => {
-    err
+    err // handling errors during the write process
       ? console.error(`Err generationg a Readme:`, err)
       : console.log("README.md has been generated!");
   });
 }
 
-// TODO: Create a function to initialize app
+// TODO: Create a function to initialize app// prompts users with questions and process response
 function init() {
   inquirer.prompt(questions).then((responses) => {
     const markdownContent = generateMarkdown({ ...responses });

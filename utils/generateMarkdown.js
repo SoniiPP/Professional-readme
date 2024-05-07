@@ -11,7 +11,9 @@ function renderLicenseBadge(license) {
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
-  switch (license) {
+  switch (
+    license // corectly handling different license to return the correct URLs
+  ) {
     case "MIT":
       return "https://opensource.org/licenses/MIT";
     case "Apache 2.0":
@@ -36,7 +38,7 @@ function renderLicenseLink(license) {
 function renderLicenseSection(license) {
   if (license !== "None") {
     return `## License\nThis project is licensed under the [${license}](${renderLicenseLink(
-      license
+      license // provide no license section if no license is selected
     )}) license.`;
   }
   return "";
